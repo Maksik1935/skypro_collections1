@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.Set;
 
 @RestController
@@ -19,11 +21,11 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public Employee addEmployee(String firstName, String lastName) {
-        return employeeService.addEmployee(firstName, lastName);
+    public boolean addEmployee(String firstName, String lastName, Integer salary, Integer department) {
+        return employeeService.addEmployee(firstName, lastName, salary, department);
     }
     @GetMapping("/remove")
-    public Employee removeEmployee(String firstName, String lastName) {
+    public boolean removeEmployee(String firstName, String lastName) {
         return employeeService.removeEmployee(firstName, lastName);
     }
     @GetMapping("/find")
@@ -32,7 +34,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/getAll")
-    public Set<Employee> removeEmployee() {
-        return employeeService.getAll();
+    public Map<String, Employee> getAll() {
+        return employeeService.getEmployees();
     }
 }
